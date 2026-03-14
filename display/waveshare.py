@@ -3,7 +3,9 @@ from PIL import Image
 import time
 
 class WaveshareDisplay(BaseDisplay):
-    def init(self): raise NotImplementedError
+    def init(self):
+        pass
+
     def display(self, image: Image.Image): raise NotImplementedError
     def clear(self): raise NotImplementedError
     def wait(self, seconds: float | None = None):

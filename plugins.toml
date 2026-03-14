@@ -1,0 +1,7 @@
+[weather]
+city = "Warsaw"
+api_key = ""
+units = "metric"
+
+[breaking_news]
+title = "test"

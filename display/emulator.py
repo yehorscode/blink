@@ -33,7 +33,8 @@ class EmulatorDisplay(BaseDisplay):
         pygame.display.flip()
     
     def clear(self):
-        self.display(Image.new("RGB", (self.width, self.height), (255,255,255)))
+        self.canvas.paste((255, 255, 255), (0, 0, self.width, self.height))
+        self.display(self.canvas)
 
     def wait(self, seconds: float | None = None):
         clock = pygame.time.Clock()

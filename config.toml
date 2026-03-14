@@ -1,0 +1,30 @@
+[web_ui]
+ip = "192.168.100.1"
+login = "admin"
+password = "admin"
+
+[sidebar]
+plugin = "status_bar"
+
+[looks]
+text_color = "(0,0,0)"
+
+[[zones]]
+id = "main"
+x = 0
+y = 0
+width = 400
+height = 290
+mode = "full"
+
+[[playlists]]
+name = "default"
+mode = "full"
+plugin = "weather"
+refresh = 600
+
+[[interrupts]]
+plugin = "breaking_news"
+priority = 1
+duration = 300
+mode = "full"
