@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from PIL import Image
 
 class BaseDisplay(ABC):
-    width = 400
-    height = 300
+    width = 250
+    height = 122
 
     def __init__(self):
         self.canvas = Image.new("RGB", (self.width, self.height), (255, 255, 255))
