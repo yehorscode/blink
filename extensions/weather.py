@@ -17,6 +17,7 @@ class WeatherPlugin:
         img = Image.new("RGB", (self.width, self.height), (255, 255, 255))
         draw = ImageDraw.Draw(img)
 
-        draw.text((20, 20), "Hi from weather plugin!", fill=(0, 0, 0), font=ImageFont.truetype(serif_font, 15))
+        draw.text((20, 20), "This is a weather extension!", fill=(0, 0, 0), font=ImageFont.truetype(sans_font, 35))
+        draw.text((10, 60), "Humidity: 30%", fill=(0, 0, 0), font=ImageFont.truetype(sans_font, 20))
         draw.rectangle((0, 0, self.width, self.height), outline=(0, 0, 0), width=5)
         return img
