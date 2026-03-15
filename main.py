@@ -6,49 +6,16 @@ import inspect
 from extensions import REGISTRY
 from PIL import Image
 from extensions.status_bar import StatusBar
-# # values
-# serif_font = "/home/yehors/blink/fonts/literata.ttf"
-# sans_font = "/home/yehors/blink/fonts/googlesans.ttf"
-
-# title_font = ImageFont.truetype(serif_font, 20)
-# body_font = ImageFont.truetype(sans_font, 13)
-
-# display = get_display()
-# display.init()
-
-# img = display.get_canvas()
-# img.paste((220,218,210), (0, 0, img.width, img.height))
-# draw = ImageDraw.Draw(img)
-
-# title_text = "Big title with long text. Just pretend its long"
-# body_text = "Smaller text"
-# max_text_width = img.width - 20
-
-# title_lines = wrap_text(title_text, title_font, max_width=max_text_width)
-# y = 10
-# for line in title_lines:
-#     draw.text((10, y), line, font=title_font, fill=0)
-#     y += title_font.size + 4
-
-# y += 6
-# draw.text((10, y), body_text, fill=0, font=body_font)
-
-# display.display(img)
-
-# if os.getenv("EINK_EMULATE", "1") != "0":
-#     display.wait(10)
-
-# display.sleep()
 
 async def main():
     config = load_config()
     plugin_configs = load_plugins()
     display = get_display()
     display.init()
-    canvas_width = 400
-    canvas_height = 290
-    status_bar = StatusBar(width=canvas_width)
-    content_height = canvas_height - status_bar.height
+    canvas_width = 250
+    canvas_height = 122
+    # status_bar = StatusBar(width=canvas_width)
+    content_height = canvas_height # - status_bar.height
 
     def create_plugin(plugin_name, width, height):
         plugin_cls = REGISTRY[plugin_name]
@@ -63,14 +30,14 @@ async def main():
             parameter.kind == inspect.Parameter.VAR_KEYWORD
             for parameter in signature.parameters.values()
         )
-        if supports_var_kwargs or "status_bar" in signature.parameters:
-            kwargs["status_bar"] = status_bar
+        # if supports_var_kwargs or "status_bar" in signature.parameters:
+            # kwargs["status_bar"] = status_bar
 
         return plugin_cls(**kwargs)
 
     async def on_update(current):
         mode = current["mode"]
-        status_bar.clear()
+        # status_bar.clear()
 
         if mode == "full":
             plugin_name = current["plugin"]
@@ -95,7 +62,7 @@ async def main():
             # Ignore unsupported modes to avoid using an uninitialized image.
             return
 
-        img.paste(status_bar.render(), (0, content_height))
+        # img.paste(status_bar.render(), (0, content_height))
 
         display.display(image=img)
 
