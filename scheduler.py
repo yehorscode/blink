@@ -86,9 +86,19 @@ def get_current_display(config: Config) -> dict:
 async def run_scheduler(config: Config, on_update):
     """Initialises the scheduler"""
     current = None
+    last_update_ts = 0.0
+
     while True:
         display = get_current_display(config)
-        if display != current:
+        now = datetime.now().timestamp()
+
+        refresh_s = display.get("refresh", 60)
+        changed = display != current
+        expired = (now - last_update_ts) >= refresh_s
+
+        if changed or expired:
             current = display
+            last_update_ts = now
             await on_update(display)
-        await asyncio.sleep(2)
+
+        await asyncio.sleep(1)
