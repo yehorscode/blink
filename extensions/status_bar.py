@@ -24,7 +24,7 @@ class StatusBar:
 
         bar_text = " | ".join(value for value in self._texts.values() if value)
         if bar_text:
-            draw.text((8, 4), bar_text, fill=self.text_color, font=self._font)
+            draw.text((8, 0), bar_text, fill=self.text_color, font=self._font)
 
         draw.line((0, 0, self.width, 0), fill=self.text_color, width=1)
         return img
